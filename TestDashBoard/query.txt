@@ -1,0 +1,5 @@
+﻿select p.PartnerName, round(Minutes, 2) as Minutes from 
+(select customerid, sum(roundedduration) / 60 Minutes 
+from cdrsummary  where starttime >= " and starttime < " group by customerid 
+ ) x  left join partner p on x.customerid = p.idpartner  order by Minutes desc
+ limit 0,10;

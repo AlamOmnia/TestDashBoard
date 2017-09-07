@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IP Phone Monitor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Custom.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<main class="container pt-5">
+    <div class="card mb-5">
+        <div class="card-header">
+            <h2> IP Phone Status</h2>
+        </div>
+        <div class="card-block p-0">
+            <table class="table table-bordered table-sm m-0">
+                <thead class="">
+                    <tr>
+                        <th>PartnerName</th>
+                        <th>Minutes</th>
+                        
+
+                    </tr>
+                </thead>
+               <tbody id="result"></tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+
+
+<footer class="footer1">
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="copyright">
+                        © Omnia Alam
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="design">
+                        Contact Information:<a href="omnia.alam@purple.com.bd">omnia.alam@purple.com.bd </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        <script>
+          //  $(document).ready(function () {
+           //     jQuery("#result").append(data);
+           // });
+            $(document).ready(function () {
+                jQuery.support.cors = true;
+                $.ajax({
+                    url: 'http://localhost:8120/api/Data',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        jQuery("#result").empty();
+                        for (var i = 0; i < data.length; i++) {
+                             jQuery("#result").append("<tr>");
+                          //  jQuery("#result").append(data);
+                             jQuery("#result").append("<td class=custom-checkbox'>" + data[i]["PartnerName"] + "</td>");
+                             jQuery("#result").append("<td class=custom-checkbox'>" + data[i]["Minutes"] + "</td>");
+                             jQuery("#result").append("</tr>");
+                        }
+
+
+
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+            });
+            
+        </script>
+    </body>
+</html>
