@@ -24,7 +24,7 @@ namespace Helpers
         private DatabaseHelper()
         {
             // Set the connection string from config file
-            ConnectionString = @"Server=192.168.2.225;User Id=root;password=Takay1#$ane;Persist Security Info=True;default command timeout=3600;database=platinum";
+            ConnectionString = @"Server=***.***.***.****;User Id=root;password=****;Persist Security Info=True;default command timeout=3600;database=platinum";
         }
 
         // Open database connection
